@@ -1,0 +1,17 @@
+POINTONESEC		EQU			300000
+;LABEL		DIRECTIVE		VALUE		COMMENT
+			AREA			routines, CODE, READONLY
+			THUMB
+			EXPORT		DELAY100
+				
+DELAY100		PROC
+					PUSH{R2,LR}
+					LDR		R2,=POINTONESEC
+Loop				SUBS	R2,#1
+					BCC 	end_loop
+					BCS		Loop
+					
+end_loop			POP{R2,LR}
+					BX	LR
+			ENDP
+		END
